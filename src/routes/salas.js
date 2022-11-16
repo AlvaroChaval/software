@@ -85,7 +85,6 @@ router.get('/inSala/:tokenS', isLoggedIn, async (req, res) => {
     console.log(tokenU + 'token de usuario');
     const { tokenS } = req.params;
     console.log(req.params + ' requ parametros');
-    console.log(req.params + ' requ parametros');
     const inSala = '?room=' + tokenS;
     const inUs = '&username=' + tokenU;
     const xml = 'http://localhost:8080/model-c4' + inSala + inUs;

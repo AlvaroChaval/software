@@ -1,14 +1,15 @@
-CREATE DATABASE sw1;
+CREATE DATABASE sw1pizarraC4;
 
-USE sw1;
+USE sw1pizarraC4;
 
 -- TABLE USER
 -- all pasword wil be encrypted using SHA1
 CREATE TABLE users (
-  id INT(11) NOT NULL PRIMARY KEY (id),
+  id INT(11) NOT NULL,
+  PRIMARY KEY (id),
   username VARCHAR(30) NOT NULL,
   correo varchar(100) not NULL,
-  password VARCHAR(60) NOT NULL,
+  password VARCHAR(60) NOT NULL
 );
 
 ALTER TABLE users
@@ -23,9 +24,10 @@ SELECT * FROM users;
 
 -- salas TABLE
 CREATE TABLE salas (
-  id INT(11) NOT NULL PRIMARY KEY (id),
+  id INT(11) NOT NULL ,
+  PRIMARY KEY (id),
   title VARCHAR(100) NOT NULL,
-  xml VARCHAR(255) NULL,
+  xml TEXT NULL,
   description TEXT,
   user_id INT(11),
   created_at timestamp NOT NULL DEFAULT current_timestamp,
