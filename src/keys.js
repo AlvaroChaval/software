@@ -3,11 +3,11 @@ module.exports = {
 
     database: {
         connectionLimit: 1000,
-        host: 'localhost',//'152.70.216.169',//'localhost', //'',
-        port: '3306',
+        host: 'roundhouse.proxy.rlwy.net',//'152.70.216.169',//'localhost', //'',
+        port: '14489',
         user: 'root',//
-        password: '',//'151199',
-        database: 'sw1pizarraC4'
+        password: 'BxUpAGGUzFEiVZnoYkIzhiBOFORShjDg',//'151199',
+        database: 'railway'
         // connectionLimit: 100,
         // host: 'localhost',//'152.70.216.169',//'localhost', //'',
         // port: '3307',
