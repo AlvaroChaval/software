@@ -4,7 +4,11 @@ const jwt = require('jsonwebtoken');
 //referencia a la base de datos
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
-
+const fs = require('fs');
+const path = require('path'); // Importa el módulo 'path' para manejar rutas
+const xml2js = require('xml2js');
+const { DOMParser } = require('xmldom');
+const XMLSerializer = require('xmldom').XMLSerializer;
 
 router.get('/add', isLoggedIn, (req, res) => {
     //renderizar
@@ -120,4 +124,103 @@ router.post('/compartir/:idSala', isLoggedIn, async (req, res,) => {
     req.flash('success', 'Compartido Successfully');
     res.redirect('/salas');
 });
+
+    // router.get('/exportar/:id', isLoggedIn, async (req, res) => { 
+    //     const { id } = req.params;
+    //     const salas = await pool.query('SELECT * FROM salas WHERE id = ?', [id]);
+    //     const archivo = salas[0].xml;
+    //     const xml = fs.readFileSync(archivo, 'utf8');
+    //     const data = await new Promise((resolve, reject) => {
+    //         xml2js.parseString(xml, { format: 'json' }, (err, result) => {
+    //         if (err) reject(err);
+    //         else resolve(result);
+    //         });
+    //     });
+    //     const javaCode = generateJavaCode(data);
+    //     res.render('salas/exportar', { javaCode, sala: salas[0] });
+    // });
+    router.get('/exportar/:id', isLoggedIn, async (req, res) => {
+        try {
+          const { id } = req.params;
+          const salas = await pool.query('SELECT * FROM salas WHERE id = ?', [id]);
+      
+          // Obtiene el contenido XML de 'salas[0].xml'
+          const xmlContent = salas[0].xml;
+
+          var parser = new DOMParser();
+var xmlDoc = parser.parseFromString(xmlContent, 'text/xml');
+var xmlSerializer = new XMLSerializer();
+var xmlStringNew = xmlSerializer.serializeToString(xmlDoc);
+      
+          const parseXml = (xmlString) => {
+            return new Promise((resolve, reject) => {
+              const parser = new xml2js.Parser();
+              parser.parseString(xmlString, (err, result) => {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve(result);
+                }
+              });
+            });
+          };
+      
+          // Ahora parseamos el XML en un objeto JSON
+          const json = await parseXml(xmlContent);
+      
+   
+          const jsonn = JSON.stringify(xmlStringNew, null, 2);
+
+
+
+var objeto = JSON.parse(jsonn);
+
+
+      
+          res.render('salas/exportar', { xmlStringNew, sala: salas[0] });
+        } catch (error) {
+          console.error(error);
+          res.status(500).send('Error interno del servidor');
+        }
+      });
+
+
+      
+      const xmldom = require('xmldom');
+
+function xmlToJava(xmlString) {
+  // Parse the XML string into a DOM document.
+  const parser = new xmldom.DOMParser();
+  const doc = parser.parseFromString(xmlString, "text/xml");
+
+  // Get the root element of the document.
+  const rootElement = doc.documentElement;
+
+  // Create a new Java class to represent the sequence diagram.
+  const javaClass = `public class ${rootElement.getAttribute('id')} {`;
+
+  // Iterate over all of the child elements of the root element.
+  for (const childElement of rootElement.children) {
+    // If the child element is a lifeline, create a Java method to represent it.
+    if (childElement.tagName === 'mxCell' && childElement.getAttribute('shape') === 'umlLifeline') {
+      javaClass += `
+        public void ${childElement.getAttribute('id')}() {
+          // TODO: Implement the logic for the lifeline.
+        }`;
+    }
+  }
+
+  // Close the Java class.
+  javaClass += '}';
+
+  // Return the Java code.
+  return javaClass;
+}
+    
+      
+      
+      
+      
+  
+
 module.exports = router;

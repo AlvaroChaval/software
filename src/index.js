@@ -63,7 +63,7 @@ app.use((req, res, next) => {
 app.use(require('./routes/index'));
 app.use(require('./routes/authentication'));
 app.use('/apis', require('./routes/apis'));
-app.use('/salas', require('./routes/salas'));
+app.use('/salas', require('./routes/salas.js'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));

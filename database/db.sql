@@ -17,9 +17,6 @@ ALTER TABLE users
 
 ALTER TABLE users ADD COLUMN tokenU varchar(500);  
 
-DESCRIBE users;
-
-
 SELECT * FROM users;
 
 -- salas TABLE
@@ -38,8 +35,6 @@ ALTER TABLE salas ADD COLUMN tokenS varchar(500);
 
 ALTER TABLE salas
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
-
-DESCRIBE salas;
 
 CREATE TABLE userSalas ( 
   id int(11) NOT null PRIMARY KEY AUTO_INCREMENT, 
