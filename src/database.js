@@ -4,7 +4,10 @@ const { promisify } = require('util');
 
 const { database } = require('./keys');
 
-const pool = mysql.createPool(database);
+const pool = mysql.createPool({database,
+    connectionLimit: 10, // Número máximo de conexiones en la pool
+  waitForConnections: true, // Si la pool ha alcanzado su límite de conexiones, espera hasta que una conexión esté disponible
+  queueLimit: 0 });
 
 pool.getConnection((err, connection) => {
     if (err) {
