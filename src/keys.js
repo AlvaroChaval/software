@@ -1,11 +1,6 @@
 //dir de la db
-import {
-    DB_HOST,
-    DB_PORT,
-    DB_DATABASE,
-    DB_USER,
-    DB_PASSWORD
-} from './config.js'
+const { DB_HOST, DB_PORT, DB_DATABASE, DB_USER, DB_PASSWORD } = require('./config');
+
 module.exports = {
 
     database: {
