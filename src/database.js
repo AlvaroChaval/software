@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 //para las promesas
 const { promisify } = require('util');
 
