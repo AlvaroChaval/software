@@ -5,11 +5,11 @@ module.exports = {
 
     database: {
         connectionLimit: 1000,
-        host: DB_HOST,//'152.70.216.169',//'localhost', //'',
-        port: DB_PORT,
-        user: DB_USER,//
-        password: DB_PASSWORD,//'151199',
-        database: DB_DATABASE
+        host: 'localhost',//'152.70.216.169',//'localhost', //'',
+        port: 3306,
+        user: 'root',//
+        password: '',//'151199',
+        database: 'sw1pizarraC4'
         // connectionLimit: 100,
         // host: 'localhost',//'152.70.216.169',//'localhost', //'',
         // port: '3307',

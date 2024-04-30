@@ -17,7 +17,12 @@ const { database } = require('./keys');
 
 // Settings
 
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 48466);
+app.set('DB_HOST', process.env.DB_HOST || 'monorail.proxy.rlwy.net');
+app.set('DB_DATABASE', process.env.DB_DATABASE || 'railway');
+app.set('DB_USER', process.env.DB_USER ||'root');
+app.set('DB_PASSWORD', process.env.DB_PASSWORD || 'iGaieNNpqvbdvplZSyJHsmTmDsXudFdP');
+app.set('DB_PORT', process.env.DB_PORT || 48466);
 
 //__dirname es una constantes que me devuelve la direccion de la carpeta
 app.set('views', path.join(__dirname, 'views'));
@@ -67,8 +72,9 @@ app.use('/salas', require('./routes/salas.js'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));
-
+const pool = require('./database.js')
 // Starting
 app.listen(app.get('port'), () => {
+  console.log('Valor de PORT:', process.env.PORT);
   console.log('Server is in port', app.get('port'));
 });
