@@ -27,7 +27,7 @@ pool.getConnection((err, connection) => {
         //fue rechazada
         if (err.code === 'ECONNREFUSED') {
             console.error('Database connection fue rechazada');
-            console.log('error3');
+            console.log('entroporeste');
         }
     }
 

@@ -1,12 +1,12 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 48466;
 const DB_USER = process.env.DB_USER || 'root';
-const DB_PASSWORD = process.env.DB_PASSWORD || '';
-const DB_HOST = process.env.DB_HOST || '';
-const DB_DATABASE = process.env.DB_DATABASE || 'sw1pizarraC4';
-const DB_PORT = process.env.DB_PORT || 3306;
+const DB_PASSWORD = process.env.DB_PASSWORD || 'iGaieNNpqvbdvplZSyJHsmTmDsXudFdP';
+const DB_HOST = process.env.DB_HOST || 'monorail.proxy.rlwy.net';
+const DB_DATABASE = process.env.DB_DATABASE || 'railway';
+const DB_PORT = process.env.DB_PORT || 48466;
 
 module.exports = {
     PORT,
