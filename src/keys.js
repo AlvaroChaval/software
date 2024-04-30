@@ -4,7 +4,7 @@ const { DB_HOST, DB_PORT, DB_DATABASE, DB_USER, DB_PASSWORD } = require('./confi
 module.exports = {
 
     database: {
-        connectionLimit: 1000,
+        //connectionLimit: 1000,
         host: 'monorail.proxy.rlwy.net',//'152.70.216.169',//'localhost', //'',
         port: 48466,
         user: 'root',//

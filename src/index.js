@@ -47,8 +47,8 @@ app.use(session({
   store: new MySQLStore(database)
 }));
 app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.initialize());
+//app.use(passport.session());
 // app.use(validator());
 
 
